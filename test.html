@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metal Prices Update</title>
+    <script>
+        // URL of the Google Sheet in CSV format
+        const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQk5u6-vyGl_jW92qRdibtIAKCDBZnT9B_H10W41m77aSC9EGKWsBZnEUs0ExNHuv1ftApvG0siRNGQ/pub?output=csv";
+
+        // Function to fetch and update metal prices
+        async function fetchAndUpdatePrices() {
+            try {
+                const response = await fetch(SHEET_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const csvData = await response.text();
+                const rows = csvData.split("\n");
+
+                // Ensure at least one data row is available
+                if (rows.length < 2) {
+                    throw new Error("Insufficient data in the sheet");
+                }
+
+                const [, dataRow] = rows; // First row is header, second row is data
+                const [goldRate, silverRate, petrolRate, dieselRate] = dataRow.split(",").map(item => item.trim());
+
+                // Validate data values
+                if (!goldRate || !silverRate || !petrolRate || !dieselRate) {
+                    throw new Error("Incomplete data in the sheet");
+                }
+
+                // Update the HTML
+                document.getElementById("gold-rate").textContent = `₹${goldRate}`;
+                document.getElementById("platinum-rate").textContent = `₹${silverRate}`;
+                document.getElementById("petrol-rate").textContent = `₹${petrolRate}`;
+                document.getElementById("diesel-rate").textContent = `₹${dieselRate}`;
+            } catch (error) {
+                console.error("Error fetching or updating prices:", error);
+            }
+        }
+
+        // Trigger the function every 2 hours (7200000 ms)
+        setInterval(fetchAndUpdatePrices, 2 * 60 * 60 * 1000);
+
+        // Fetch data on page load
+        window.onload = fetchAndUpdatePrices;
+    </script>
+</head>
+<body>
+    <div class="top-bar">
+        <div id="metal-prices">
+            Gold: <span id="gold-rate">Fetching...</span> |  
+            Silver: <span id="platinum-rate">Fetching...</span> | 
+            Petrol: <span id="petrol-rate">Fetching...</span> |   
+            Diesel: <span id="diesel-rate">Fetching...</span> 
+        </div>
+    </div>
+</body>
+</html>
