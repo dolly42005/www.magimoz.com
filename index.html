@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magimoz Deals And Flash Updates</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amazon-Ember:wght@400;500;700&amp;display=swap" rel="stylesheet">
     <style>
         /* General Styles */
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Amazon-Ember', sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: #f5f5f5;
+            color: #111;
         }
 
         header {
-            background-color: #0056b3;
+            background-color: #232f3e;
             color: #fff;
             text-align: center;
             padding: 1.5rem 1rem;
@@ -35,16 +33,20 @@
 
         .top-bar {
             display: flex;
-            justify-content: space-around;
             flex-wrap: wrap;
+            justify-content: space-around;
             padding: 0.5rem;
-            background-color: #003f7f;
+            background-color: #37475a;
             font-size: 0.9rem;
+        }
+
+        .top-bar div {
+            color: #ddd;
         }
 
         #product-catalog {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             padding: 2rem;
         }
@@ -66,13 +68,14 @@
 
         .product-card img {
             max-width: 100%;
+            height: auto;
             border-radius: 5px;
         }
 
         .product-card h2 {
             font-size: 1.2rem;
             margin: 0.5rem 0;
-            color: #0056b3;
+            color: #232f3e;
         }
 
         .product-card p {
@@ -82,8 +85,8 @@
 
         .buy-button {
             display: inline-block;
-            background-color: #ff9800;
-            color: #fff;
+            background-color: #ffa41c;
+            color: #111;
             padding: 0.5rem 1rem;
             border-radius: 5px;
             text-decoration: none;
@@ -91,11 +94,11 @@
         }
 
         .buy-button:hover {
-            background-color: #e68900;
+            background-color: #ff8c00;
         }
 
         footer {
-            background-color: #333;
+            background-color: #232f3e;
             color: #fff;
             text-align: center;
             padding: 1rem 0;
@@ -106,7 +109,7 @@
         }
 
         footer nav a {
-            color: #ff9800;
+            color: #ffa41c;
             margin: 0 0.5rem;
             text-decoration: none;
             transition: color 0.3s ease;
@@ -129,7 +132,7 @@
         }
 
         .pagination button {
-            background-color: #0056b3;
+            background-color: #232f3e;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
@@ -139,7 +142,7 @@
         }
 
         .pagination button:hover {
-            background-color: #00408d;
+            background-color: #37475a;
         }
 
         .pagination button.disabled {
@@ -147,6 +150,15 @@
             cursor: not-allowed;
         }
 
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .product-card {
+                padding: 1rem 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -156,7 +168,7 @@
             <div id="metal-prices">
                 Gold: <span id="gold-rate">₹7,225</span> | 
                 Silver: <span id="platinum-rate">₹100</span> | 
-		Petrol: <span id="petrol-rate">₹110.22</span> | 
+                Petrol: <span id="petrol-rate">₹110.22</span> | 
                 Diesel: <span id="diesel-rate">₹97.97</span>
             </div>
             <div id="stocks">
@@ -189,12 +201,12 @@
             <a href="disclaimer.html">Disclaimer</a>
             <a href="contact.html">Contact Us</a>
         </nav>
-        <p>&copy; 2025 Magimoz Deals And Flash Updates. All Rights Reserved.</p>
+        <p>© 2025 Magimoz Deals And Flash Updates. All Rights Reserved.</p>
     </footer>
 
     <script>
         const products = [
-  {
+           {
     "name": "Lifelong PVC Hex Dumbbells Pack of 2 (5kg*2) Black Color for Home Gym Equipment Fitness Barbell|Gym Exercise|Home Workout, Gym Dumbbells|Dumbbells Weights for Men & Women (6 Months Warranty)",
     "price": "509",
     "imageUrl": "https://m.media-amazon.com/images/I/710SxepIfiL._SX522_.jpg",
@@ -518,7 +530,7 @@
     "imageUrl": "https://m.media-amazon.com/images/I/71QpIMNovdL._SX679_.jpg",
     "pageLink": "https://amzn.to/420saS4"
   }
-];
+        ];
 
         let currentPage = 0;
         const productsPerPage = 12;
@@ -565,9 +577,7 @@
         });
 
         renderPage(currentPage);
-		
-		
-		
     </script>
-</body>
-</html>
+
+
+</body></html>
